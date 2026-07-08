@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shivin's Birthday Bash - You're Invited!</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="You are cordially invited to Shivin's Birthday Celebration! Open the virtual envelope to view date, time, venue details, and RSVP.">
+  <meta name="theme-color" content="#ffcad4">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <!-- FontAwesome Icons for premium visual cues -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Hanging Bunting Banner for decoration -->
+  <div class="bunting">
+    <div class="bunting-flag" style="--flag-color: #ffb5a7;"></div>
+    <div class="bunting-flag" style="--flag-color: #b5e2fa;"></div>
+    <div class="bunting-flag" style="--flag-color: #ffe5ec;"></div>
+    <div class="bunting-flag" style="--flag-color: #c5f0a4;"></div>
+    <div class="bunting-flag" style="--flag-color: #ece4db;"></div>
+    <div class="bunting-flag" style="--flag-color: #fec5bb;"></div>
+    <div class="bunting-flag" style="--flag-color: #b5e2fa;"></div>
+    <div class="bunting-flag" style="--flag-color: #ffb5a7;"></div>
+    <div class="bunting-flag" style="--flag-color: #ffe5ec;"></div>
+    <div class="bunting-flag" style="--flag-color: #c5f0a4;"></div>
+    <div class="bunting-flag" style="--flag-color: #ece4db;"></div>
+    <div class="bunting-flag" style="--flag-color: #fec5bb;"></div>
+  </div>
+
+
+  <!-- Background Clouds -->
+  <div class="clouds-bg">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="cloud cloud-4"></div>
+    <div class="cloud cloud-5"></div>
+    <div class="cloud cloud-6"></div>
+  </div>
+
+
+  <!-- Background Particle Canvas (For Sprinkles/Confetti) -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Ambient Audio Controls -->
+  <header>
+    <button class="music-btn" id="music-toggle" aria-label="Toggle Background Music">
+      <i class="fa-solid fa-music"></i>
+    </button>
+  </header>
+
+  <!-- Interactive Doraemon & Nobita Splash Screen -->
+  <div class="envelope-container" id="envelope-container">
+    <div class="character-envelope-wrapper" id="envelope-wrapper">
+      <div class="character-card">
+        <!-- Manga Speech Bubble -->
+        <div class="speech-bubble">Tap me to open! 🎈</div>
+        <img src="nobita_doraemon.png" alt="Doraemon and Nobita holding your invitation!" class="character-img">
+        <!-- Card Caption -->
+        <div class="card-caption">Shivin's <span class="big-num">1</span>st Birthday Bash 🎂</div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Main Web Content -->
+  <main id="main-content">
+    
+    <!-- Hero / Celebration Card -->
+    <section class="card-section hero" id="section-hero">
+      <div class="ornament top-left"></div>
+      <div class="ornament top-right"></div>
+      <div class="ornament bottom-left"></div>
+      <div class="ornament bottom-right"></div>
+
+      <div class="hero-container">
+        <!-- Text Content -->
+        <div class="hero-content">
+          <div class="invitation-badge">You're Invited!</div>
+          <h1 class="birthday-title">SHIVIN'S</h1>
+          <div class="sub-title"><span class="big-num">1</span>ST BIRTHDAY BASH</div>
+          <p class="invite-message">
+            Join us for an exciting afternoon filled with games, cakes, floating balloons, and heaps of celebration as Shivin turns one. Your presence and warm wishes will make this day extra special!
+          </p>
+        </div>
+        
+        <!-- Polaroid Photo Frame Carousel -->
+        <div class="hero-photo-container">
+          <div class="polaroid-frame">
+            <!-- Nav buttons -->
+            <button type="button" class="photo-nav prev" id="prev-photo" aria-label="Previous Photo">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="photo-nav next" id="next-photo" aria-label="Next Photo">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            
+            <!-- Photo slides -->
+            <div class="photo-display">
+              <img src="shivin_3.jpg" alt="Shivin laughing!" class="photo-slide active">
+              <img src="shivin_1.jpg" alt="Shivin in winter cap" class="photo-slide">
+              <img src="shivin_2.jpg" alt="Shivin with teddy bear" class="photo-slide">
+              <img src="shivin_4.jpg" alt="Shivin in mountains" class="photo-slide">
+              <img src="shivin_5.jpg" alt="Shivin in blue cap" class="photo-slide">
+              <img src="shivin_6.jpg" alt="Shivin laughing in white cap" class="photo-slide">
+            </div>
+            
+            <div class="polaroid-caption">OUR BIRTHDAY BOY 👶</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Details Section -->
+    <section class="card-section" id="section-details">
+      <div class="ornament top-left"></div>
+      <div class="ornament top-right"></div>
+      <div class="ornament bottom-left"></div>
+      <div class="ornament bottom-right"></div>
+
+      <div class="details-grid">
+        <!-- Date -->
+        <div class="detail-card">
+          <div class="detail-icon"><i class="fa-regular fa-calendar-days"></i></div>
+          <h3>WHEN</h3>
+          <p>Sunday, July 26, 2026</p>
+          <p style="margin-top: 5px; font-weight: 700; color: var(--text-dark);">6:00 PM Onwards</p>
+        </div>
+
+        <!-- Venue -->
+        <div class="detail-card">
+          <div class="detail-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+          <h3>WHERE</h3>
+          <p>Bombay Vegetarian</p>
+          <p>Jalandhar</p>
+          <a href="https://maps.app.goo.gl/9oSuUiDStgeuR58S6?g_st=aw" target="_blank" rel="noopener noreferrer" class="map-btn">Get Directions</a>
+        </div>
+
+        <!-- RSVP Info / Contact -->
+        <div class="detail-card">
+          <div class="detail-icon"><i class="fa-solid fa-phone"></i></div>
+          <h3>CONTACT</h3>
+          <p>Call Shivin's Family:</p>
+          <p style="margin-top: 5px; font-weight: 700;"><a href="tel:+919716304326" style="color: var(--text-dark); text-decoration: none; border-bottom: 1.5px dashed #ff4d6d;">+91 9716304326</a></p>
+          <p style="margin-top: 3px; font-weight: 700;"><a href="tel:+919720543734" style="color: var(--text-dark); text-decoration: none; border-bottom: 1.5px dashed #ff4d6d;">+91 9720543734</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Countdown Timer -->
+    <section class="card-section countdown-section" id="section-countdown">
+      <div class="ornament top-left"></div>
+      <div class="ornament top-right"></div>
+      <div class="ornament bottom-left"></div>
+      <div class="ornament bottom-right"></div>
+
+      <h2>COUNTDOWN TO THE CELEBRATION</h2>
+      <div class="countdown-container">
+        <div class="countdown-box">
+          <span class="countdown-number" id="days">00</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-box">
+          <span class="countdown-number" id="hours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-box">
+          <span class="countdown-number" id="minutes">00</span>
+          <span class="countdown-label">Mins</span>
+        </div>
+        <div class="countdown-box">
+          <span class="countdown-number" id="seconds">00</span>
+          <span class="countdown-label">Secs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP Interactive Form -->
+    <section class="card-section rsvp-section" id="section-rsvp">
+      <div class="ornament top-left"></div>
+      <div class="ornament top-right"></div>
+      <div class="ornament bottom-left"></div>
+      <div class="ornament bottom-right"></div>
+
+      <h2>ARE YOU COMING?</h2>
+      <p class="sub">Please let us know if you will celebrate with us by filling the form below.</p>
+
+      <form id="rsvp-form">
+        <!-- Attendance Selection -->
+        <div class="form-group">
+          <label>Will you attend?</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="rsvp-yes" name="attendance" value="yes" checked>
+              <label for="rsvp-yes">Joyfully Attend</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="rsvp-no" name="attendance" value="no">
+              <label for="rsvp-no">Sending my best wishes</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Name -->
+        <div class="form-group">
+          <label for="guest-name">Your Name</label>
+          <input type="text" id="guest-name" placeholder="Enter your full name" required>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="form-group">
+          <label for="guest-phone">Phone Number</label>
+          <input type="tel" id="guest-phone" placeholder="Enter phone number">
+        </div>
+
+        <!-- Birthday Wish -->
+        <div class="form-group">
+          <label for="guest-wish">Birthday Wish for Shivin</label>
+          <textarea id="guest-wish" rows="3" placeholder="Leave a sweet note or wish for Shivin!"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Send Invitation Response</button>
+      </form>
+
+      <div class="rsvp-status-msg" id="rsvp-status"></div>
+    </section>
+
+    <!-- Wishes Board -->
+    <section class="card-section wishes-section" id="section-wishes">
+      <div class="ornament top-left"></div>
+      <div class="ornament top-right"></div>
+      <div class="ornament bottom-left"></div>
+      <div class="ornament bottom-right"></div>
+
+      <h2>WISHES & CONGRATULATIONS</h2>
+      <div class="wishes-board" id="wishes-board">
+        <!-- Rendered dynamically by javascript -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Shivin's Birthday Invitation &bull; 2026</p>
+  </footer>
+
+  <!-- Animated Toy Train in Background -->
+  <div class="train-track-container">
+    <div class="toy-train">
+      <!-- Carriage 3 -->
+      <div class="train-carriage carriage-yellow">
+        <div class="gift-box">🍰</div>
+        <div class="wheel wheel-1"></div>
+        <div class="wheel wheel-2"></div>
+      </div>
+      <!-- Carriage 2 -->
+      <div class="train-carriage carriage-blue">
+        <div class="gift-box">🎈</div>
+        <div class="wheel wheel-1"></div>
+        <div class="wheel wheel-2"></div>
+      </div>
+      <!-- Carriage 1 -->
+      <div class="train-carriage carriage-pink">
+        <div class="gift-box">🎁</div>
+        <div class="wheel wheel-1"></div>
+        <div class="wheel wheel-2"></div>
+      </div>
+      <!-- Engine (leads, on the right) -->
+      <div class="train-engine">
+        <div class="chimney">
+          <div class="smoke-puff smoke-1"></div>
+          <div class="smoke-puff smoke-2"></div>
+        </div>
+        <div class="wheel wheel-1"></div>
+        <div class="wheel wheel-2"></div>
+      </div>
+    </div>
+    <div class="track-line"></div>
+  </div>
+
+  <!-- Script -->
+  <script src="app.js"></script>
+</body>
+</html>
+
