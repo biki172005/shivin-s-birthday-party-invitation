@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Comfortaa:wght@400;500;700&family=Sniglet:wght@800&display=swap');
 
 :root {
+  color-scheme: light;
   --bg-sky: linear-gradient(180deg, #d8f3dc 0%, #b7e4c7 30%, #e8c1c5 70%, #ffcad4 100%);
   --outline-color: #2b2b2b;
   --outline-thick: 3.5px solid var(--outline-color);
