@@ -40,7 +40,7 @@
 }
 
 body {
-  background: linear-gradient(-45deg, #d8f3dc, #b7e4c7, #e8c1c5, #ffcad4, #b5e2fa, #ffe5ec);
+  background: linear-gradient(-45deg, #b5e2fa, #a9def9, #d0f4de, #ffcad4, #b5e2fa, #ffe5ec);
   background-size: 400% 400%;
   animation: gradient-bg 18s ease infinite;
   color: var(--text-dark);
@@ -239,7 +239,7 @@ header {
   left: -10px;
   right: -10px;
   bottom: -10px;
-  background: linear-gradient(135deg, #ffb5a7, #b5e2fa, #ffe5ec, #c5f0a4);
+  background: linear-gradient(135deg, #b5e2fa, #a9def9, #ffe5ec, #d0f4de);
   z-index: -2;
   border-radius: 30px;
   filter: blur(20px);
