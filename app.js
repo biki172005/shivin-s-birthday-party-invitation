@@ -518,8 +518,35 @@ function updateCountdown() {
   secsEl.textContent = seconds.toString().padStart(2, '0');
 }
 
+// --- Firebase Database Configuration ---
+const firebaseConfig = {
+  apiKey: "AIzaSyCfIAYFFWcZQfbQ4qIdAv0CHagSavZXxSs",
+  authDomain: "shivin-s-birthday-party.firebaseapp.com",
+  databaseURL: "https://shivin-s-birthday-party-default-rtdb.firebaseio.com", // Singapore regional databases might end with -default-rtdb.asia-southeast1.firebasedatabase.app. We'll adjust if needed.
+  projectId: "shivin-s-birthday-party",
+  storageBucket: "shivin-s-birthday-party.firebasestorage.app",
+  messagingSenderId: "36685298020",
+  appId: "1:36685298020:web:e79069e2322af2a218a271",
+  measurementId: "G-K2392WWFJ5"
+};
+
+let database = null;
+let useFirebase = false;
+
+if (typeof firebase !== 'undefined' && firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY") {
+  try {
+    firebase.initializeApp(firebaseConfig);
+    database = firebase.database();
+    useFirebase = true;
+    console.log("Firebase initialized successfully!");
+  } catch (err) {
+    console.error("Firebase failed to initialize:", err);
+  }
+}
+
 // --- Local Storage & Wishes Board ---
 const defaultWishes = [];
+let wishesListenerInitialized = false;
 
 function getWishes() {
   const wishes = localStorage.getItem('shivin_birthday_wishes_v2');
@@ -531,22 +558,29 @@ function getWishes() {
 }
 
 function saveWish(name, wish) {
-  const wishes = getWishes();
-  wishes.unshift({ name, wish });
-  localStorage.setItem('shivin_birthday_wishes_v2', JSON.stringify(wishes));
+  if (useFirebase && database) {
+    database.ref('wishes').push({
+      name: name,
+      wish: wish,
+      timestamp: Date.now()
+    });
+  } else {
+    const wishes = getWishes();
+    wishes.unshift({ name, wish });
+    localStorage.setItem('shivin_birthday_wishes_v2', JSON.stringify(wishes));
+  }
 }
 
-function renderWishes() {
+function displayWishes(wishesList) {
   const wishesBoard = document.getElementById('wishes-board');
   wishesBoard.innerHTML = '';
-  const wishes = getWishes();
 
-  if (wishes.length === 0) {
+  if (wishesList.length === 0) {
     wishesBoard.innerHTML = '<div class="no-wishes">No wishes posted yet. Be the first to wish!</div>';
     return;
   }
 
-  wishes.forEach((w) => {
+  wishesList.forEach((w) => {
     const card = document.createElement('div');
     card.className = 'wish-card';
     
@@ -562,6 +596,55 @@ function renderWishes() {
     card.appendChild(author);
     wishesBoard.appendChild(card);
   });
+}
+
+function renderLocalWishes() {
+  const wishesList = getWishes();
+  displayWishes(wishesList);
+}
+
+function renderWishes() {
+  if (useFirebase && database) {
+    // Automatically migrate any existing local storage wishes to Firebase so they aren't lost
+    const localWishes = getWishes();
+    const migrated = localStorage.getItem('shivin_wishes_migrated_v2');
+    if (localWishes.length > 0 && !migrated) {
+      try {
+        localWishes.forEach((w) => {
+          database.ref('wishes').push({
+            name: w.name,
+            wish: w.wish,
+            timestamp: Date.now()
+          });
+        });
+        localStorage.setItem('shivin_wishes_migrated_v2', 'true');
+        console.log("Local wishes successfully migrated to Firebase!");
+      } catch (err) {
+        console.error("Failed to migrate local wishes:", err);
+      }
+    }
+
+    if (!wishesListenerInitialized) {
+      wishesListenerInitialized = true;
+      database.ref('wishes').on('value', (snapshot) => {
+        const wishesList = [];
+        const data = snapshot.val();
+        if (data) {
+          Object.keys(data).forEach((key) => {
+            wishesList.push(data[key]);
+          });
+          // Sort by timestamp descending (newest first)
+          wishesList.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+        }
+        displayWishes(wishesList);
+      }, (error) => {
+        console.error("Firebase read error, falling back to local wishes:", error);
+        renderLocalWishes();
+      });
+    }
+  } else {
+    renderLocalWishes();
+  }
 }
 
 // --- Envelope Opening Handler ---
