@@ -724,32 +724,11 @@ rsvpForm.addEventListener('submit', (e) => {
     rsvpStatus.textContent = `Aww, thanks for letting us know, ${name}! You'll be missed! 💕`;
   }
 
-  // Generate WhatsApp message
-  let message = "";
-  if (attendance === 'yes') {
-    message = `Hi! I'd love to join Shivin's 1st Birthday Bash! 🎉🎈\n\n`;
-    message += `👤 Name: ${name}\n`;
-    if (phone) message += `📞 Phone: ${phone}\n`;
-    if (wish) message += `✨ Wish: ${wish}`;
-  } else {
-    message = `Hi! I won't be able to make it to Shivin's 1st Birthday Bash, but I am sending my best wishes! 🎂🌸\n\n`;
-    message += `👤 Name: ${name}\n`;
-    if (phone) message += `📞 Phone: ${phone}\n`;
-    if (wish) message += `✨ Wish: ${wish}`;
-  }
-
-  const waUrl = `https://api.whatsapp.com/send?phone=919716304326&text=${encodeURIComponent(message)}`;
-
   // Save wish to local board if provided
   if (wish) {
     saveWish(name, wish);
     renderWishes();
   }
-
-  // Open WhatsApp in a new tab after a short delay
-  setTimeout(() => {
-    window.open(waUrl, '_blank');
-  }, 1000);
 
   // Clear form
   rsvpForm.reset();
