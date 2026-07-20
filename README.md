@@ -9,7 +9,7 @@ An interactive, animated cartoon-themed digital birthday invitation card handcra
 * **Ambient Canvas Particles**: Drifting clouds and floating, spinning Doraemon gadgets (Take-copters and Anywhere Doors).
 * **Music Box Synthesizer**: Plays a Web Audio API synthesized "Happy Birthday" melody loop when opened.
 * **Interactive Balloons**: Floating parallax balloons that make a pop chime sound and burst into confetti when clicked.
-* **Interactive RSVP Form**: Fully integrated form to collect attendance status, names, emails, and wishes.
+* **Interactive RSVP Form**: Fully integrated form to collect attendance status, names, phone numbers, and wishes.
 * **Live Wishes Board**: Renders guest wishes in real-time onto a card board.
 
 ## 🚀 How to Deploy on Vercel

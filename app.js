@@ -706,10 +706,10 @@ rsvpForm.addEventListener('submit', (e) => {
   
   const attendance = document.querySelector('input[name="attendance"]:checked').value;
   const name = document.getElementById('guest-name').value.trim();
-  const email = document.getElementById('guest-email').value.trim();
+  const phone = document.getElementById('guest-phone').value.trim();
   const wish = document.getElementById('guest-wish').value.trim();
 
-  if (!name || !email) return;
+  if (!name || !phone) return;
 
   // Web3Forms API call to send email notification
   fetch('https://api.web3forms.com/submit', {
@@ -723,7 +723,7 @@ rsvpForm.addEventListener('submit', (e) => {
       subject: `New RSVP from ${name}`,
       from_name: "Birthday RSVP",
       name: name,
-      email: email,
+      phone: phone,
       attendance: attendance === 'yes' ? 'Attending' : 'Not Attending',
       wish: wish || "No wish left"
     })
