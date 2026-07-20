@@ -575,12 +575,18 @@ function displayWishes(wishesList) {
   const wishesBoard = document.getElementById('wishes-board');
   wishesBoard.innerHTML = '';
 
-  if (wishesList.length === 0) {
+  // Filter out any wishes from Brijesh or Nikita
+  const filteredWishes = wishesList.filter(w => {
+    const nameLower = (w.name || '').toLowerCase();
+    return !nameLower.includes('brijesh') && !nameLower.includes('nikita');
+  });
+
+  if (filteredWishes.length === 0) {
     wishesBoard.innerHTML = '<div class="no-wishes">No wishes posted yet. Be the first to wish!</div>';
     return;
   }
 
-  wishesList.forEach((w) => {
+  filteredWishes.forEach((w) => {
     const card = document.createElement('div');
     card.className = 'wish-card';
     
@@ -700,10 +706,35 @@ rsvpForm.addEventListener('submit', (e) => {
   
   const attendance = document.querySelector('input[name="attendance"]:checked').value;
   const name = document.getElementById('guest-name').value.trim();
-  const phone = document.getElementById('guest-phone').value.trim();
+  const email = document.getElementById('guest-email').value.trim();
   const wish = document.getElementById('guest-wish').value.trim();
 
-  if (!name) return;
+  if (!name || !email) return;
+
+  // Web3Forms API call to send email notification
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      access_key: "8ec50292-bac8-408c-9fd6-2a5b3895a49b",
+      subject: `New RSVP from ${name}`,
+      from_name: "Birthday RSVP",
+      name: name,
+      email: email,
+      attendance: attendance === 'yes' ? 'Attending' : 'Not Attending',
+      wish: wish || "No wish left"
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("Web3Forms RSVP response sent:", data);
+  })
+  .catch(err => {
+    console.error("Web3Forms RSVP response error:", err);
+  });
 
   // Visual success feedback
   rsvpStatus.style.color = '#ff4d6d';
